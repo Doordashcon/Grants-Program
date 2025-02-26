@@ -1,20 +1,27 @@
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
-const mdxMermaid = require('mdx-mermaid');
+const lightCodeTheme = require('prism-react-renderer').themes.github;
+const darkCodeTheme = require('prism-react-renderer').themes.dracula;
+// needed for LaTeX compatibility
+const math = require('remark-math');
+const katex = require('rehype-katex');
+
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title: 'Web3 Foundation Grants',
-  tagline: 'Funding Software Development and Research Efforts related to Polkadot and Kusama.',
-  url: 'https://w3f.github.io',
-  baseUrl: '/Grants-Program/',
+  tagline: 'Funding Software Development and Research Efforts related to Polkadot and Kusama',
+  url: 'https://grants.web3.foundation',
+  baseUrl: '/',
   onBrokenLinks: 'warn',    // Revert back to 'throw' once initial release is up
-  onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/Web3Foundation.png',
+  onBrokenMarkdownLinks: 'ignore',
+  favicon: 'img/favicon-32x32.png',
   organizationName: 'w3f', // Usually your GitHub org/user name.
   trailingSlash: false,
   projectName: 'Grants-Program', // Usually your repo name.
 
+  markdown: {
+    mermaid: true,
+  },
+  themes: ['@docusaurus/theme-mermaid'],
   themeConfig: {
     colorMode: {
       defaultMode: 'light',
@@ -28,32 +35,34 @@ module.exports = {
     announcementBar: {
       id: 'announcement',
       content:
-        'Check out <a target="_blank" rel="noopener noreferrer" href="https://web3.bamboohr.com/jobs/">our current job openings</a>!',
+        'For updates on our ongoing programs and initiatives, check out <a target="_blank" rel="noopener noreferrer" href="https://medium.com/web3foundation/web3-foundation-ecodev-wave-24-recipients-e15adea23002">our latest blog post!</a>',
       backgroundColor: '#000',
       textColor: '#ffffff',
       isCloseable: true,
     },
     navbar: {
-      title: 'W3F Grants Program',
+      title: 'Grants Program',
       logo: {
         alt: 'W3F Grants Program',
-        src: 'img/Web3Foundation.png',
+        src: 'img/w3f_logo.svg',
       },
       items: [
         {
           type: 'doc',
           docId: 'docs/introduction',
-          label: 'Introduction',
+          position: 'right',
+          label: 'Docs',
         },
         {
           type: 'doc',
           docId: 'applications/index',
-          position: 'left',
+          position: 'right',
           label: 'List of Grants',
         },
         {
           type: 'doc',
           docId: 'docs/faq',
+          position: 'right',
           label: 'FAQ',
         },
         {
@@ -61,12 +70,6 @@ module.exports = {
           docId: 'docs/Process/how-to-apply',
           position: 'right',
           label: 'Apply',
-        },
-        {
-          type: 'doc',
-          docId: 'docs/contribute',
-          position: 'right',
-          label: 'Contribute',
         }
       ],
     },
@@ -87,6 +90,10 @@ module.exports = {
             {
               label: 'Privacy Policy',
               to: 'docs/Support%20Docs/privacy_policy',
+            },
+            {
+              label: 'Legal Disclosures',
+              to: 'https://web3.foundation/legal-disclosures/',
             },
           ],
         }, 
@@ -136,13 +143,16 @@ module.exports = {
           beforeDefaultRemarkPlugins: [
           ],
           remarkPlugins: [
-            mdxMermaid
+            math,
           ],
           rehypePlugins: [
+            katex,
           ],
           exclude: [
             'applications/application-template.md',
             'applications/example-project.md',
+            'applications/maintenance/maintenance-template.md',
+            'applications/application-template-research.md',
             'docs/RFPs/suggestion-template.md',
             '.docusaurus/**',
             '.github/**',

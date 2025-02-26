@@ -98,11 +98,11 @@ We are not on LinkedIn.
 
 We already implemented cryptographic primitives which are compatible with `parity-scale-codec`.
 
-- [zero-crypto](https://github.com/zero-network/zero/tree/master/primitive/crypto) [![crates.io badge](https://img.shields.io/crates/v/zero-crypto.svg)](https://crates.io/crates/zero-crypto)
-- [zero-jubjub](https://github.com/zero-network/zero/tree/master/primitive/jubjub) [![crates.io badge](https://img.shields.io/crates/v/zero-jubjub.svg)](https://crates.io/crates/zero-jubjub)
-- [zero-bls12-381](https://github.com/zero-network/zero/tree/master/primitive/bls12_381) [![crates.io badge](https://img.shields.io/crates/v/zero-bls12-381.svg)](https://crates.io/crates/zero-bls12-381)
-- [zero-elgamal](https://github.com/zero-network/zero/tree/master/primitive/elgamal) [![crates.io badge](https://img.shields.io/crates/v/zero-elgamal.svg)](https://crates.io/crates/zero-elgamal)
-- [zero-pairing](https://github.com/zero-network/zero/tree/master/primitive/pairing) [![crates.io badge](https://img.shields.io/crates/v/zero-pairing.svg)](https://crates.io/crates/zero-pairing)
+- [zero-crypto](https://github.com/KogarashiNetwork/Kogarashi/tree/master/primitive/crypto) [![crates.io badge](https://img.shields.io/crates/v/zero-crypto.svg)](https://crates.io/crates/zero-crypto)
+- [zero-jubjub](https://github.com/KogarashiNetwork/Kogarashi/tree/master/primitive/jubjub) [![crates.io badge](https://img.shields.io/crates/v/zero-jubjub.svg)](https://crates.io/crates/zero-jubjub)
+- [zero-bls12-381](https://github.com/KogarashiNetwork/Kogarashi/tree/master/primitive/bls12_381) [![crates.io badge](https://img.shields.io/crates/v/zero-bls12-381.svg)](https://crates.io/crates/zero-bls12-381)
+- [zero-elgamal](https://github.com/KogarashiNetwork/Kogarashi/tree/master/primitive/elgamal) [![crates.io badge](https://img.shields.io/crates/v/zero-elgamal.svg)](https://crates.io/crates/zero-elgamal)
+- [zero-pairing](https://github.com/KogarashiNetwork/Kogarashi/tree/master/primitive/pairing) [![crates.io badge](https://img.shields.io/crates/v/zero-pairing.svg)](https://crates.io/crates/zero-pairing)
 - [zero-plonk](https://github.com/zero-network/dusk-plonk/tree/acffa2e0af43fdaf40c0f1e4d38b6124c57f5a05) [![crates.io badge](https://img.shields.io/crates/v/zero-plonk.svg)](https://crates.io/crates/zero-plonk)
 
 ## Development Roadmap :nut_and_bolt:
@@ -111,13 +111,13 @@ Through this grant, we are going to implement the **zkwasm** which supports tran
 
 ### Overview
 
-- **Total Estimated Duration:** 6 months
+- **Total Estimated Duration:** 5 months
 - **Full-Time Equivalent (FTE):**  2 FTE
-- **Total Costs:** 40,000 USDT
+- **Total Costs:** 20,000 USDT
 
 ### Milestone 1 | Crypto Primitive
 
-- **Estimated duration:** 1.5 month
+- **Estimated duration:** 2 month
 - **FTE:**  2
 - **Costs:** 10,000 USDT
 
@@ -134,13 +134,13 @@ In `Milestone 1`, we are going to implement `RedDSA`, optimize `Jubjub` curve an
 | 2. | `Jubjub` curve optimization | `Jubjub` curve optimization allows us to perform elliptic curve arithmetic quickly. In our scheme, zero-knowledge prover time is latency when users send transaction and verification time is gas cost on chain. Specifically, we implement [Twisted Edwards Curves Revisited](https://iacr.org/archive/asiacrypt2008/53500329/53500329.pdf), [Jacobian Coordinates](https://eprint.iacr.org/2014/1014.pdf) and [wNAF](https://www.scitepress.org/papers/2014/50587/50587.pdf), [pippenger](https://cr.yp.to/papers/pippenger.pdf). |
 |3. | Client wallet implementation |We are going to implement client wallet of `RedDSA`. With this wallet, user can generate private key and one time signing key, and delegate their proof generation, in addition to normal wallet functionalities through RPC.|
 
-### Milestone 2 | Plonk Extension
+### Milestone 2 | Nova Folding Recursive Snarks Pallet
 
-- **Estimated duration:** 1.5 month
+- **Estimated duration:** 3 month
 - **FTE:**  2
 - **Costs:** 10,000 USDT
 
-In `Milestone 2`, we are going to implement `plookup` and recursion on top of [plonk](https://github.com/zero-network/dusk-plonk). These can improve the performance and prove the validity of several circuits separatelly.
+In `Milestone 2`, we are going to implement [Nova folding scheme](https://eprint.iacr.org/2021/370.pdf) which allows light weight recursive Snarks.
 
 | Number | Deliverable | Specification |
 | -----: | ----------- | ------------- |
@@ -149,51 +149,20 @@ In `Milestone 2`, we are going to implement `plookup` and recursion on top of [p
 | 0c. | Testing Guide | Core functions will be fully covered by unit tests to ensure functionality and robustness. In the guide, we will describe how to run these tests. |
 | 0d. | Docker | We will provide Dockerfiles that can be used to test all the functionality delivered with this milestone. |
 | 0e. | Article | We will publish an article/tutorial/workshop that explains |
-| 1. | `plookup` implementation | We are going to implement `plookup` to our [plonk](https://github.com/zero-network/dusk-plonk). `plookup` allows us to use precomputed lookup table in zero knowledge circuit and reduce complexity of circuit.|
-| 2. | `recursive proof` implementation | We are going to implement `recursive proof` to our [plonk](https://github.com/zero-network/dusk-plonk). `recursive proof` allows us to generate aggregation circuit and bundle **wasm** ISA proofs to one.|
-| 3. | circuit implementation | We are going to implement zero knowledge circuit which supports combination of `plookup` and `recursive proof`. This circuit allows us to implement the circuit for **zkwasm**.|
+| 1. | `bn254/grumpkin` implementation | We are going to implement fully Polkadot compatible `bn254/grumpkin` curve for efficient verifier encoder by [cycle of curves](https://eprint.iacr.org/2023/969.pdf).|
+| 2. | `groth16` implementation | We are going to implement fully Polkadot compatible `groth16` for recursive Snarks verifier circuit.|
+| 3. | `recursive proof` implementation | We are going to implement `recursive proof` with Nova folding scheme. `recursive proof` allows us to compress multiple statements to prove.|
+| 4. | `Nova pallet` implementation | We are going to implement `Nova folding pallet`. `Nova folding pallet` allows us to verify Nova recursive proof which proves multiple statements with a single proof.|
 
-### Milestone 3 | Zk Wasm Transfer Prover and Verifier
+## Timeline
 
-- **Estimated duration:** 1.5 month
-- **FTE:**  2
-- **Costs:** 10,000 USDT
-
-In `Milestone 3`, we are going to implement `plookup` and `recursive proof` on top of [plonk](https://github.com/zero-network/dusk-plonk). These can improve the performance and prove the validity of several circuits separatelly.
-
-| Number | Deliverable | Specification |
-| -----: | ----------- | ------------- |
-| 0a. | License | Apache 2.0 |
-| 0b. | Documentation | We will provide both `inline documentation` of the code and a `basic tutorial` that explains how users prove the validity of **wasm** ISA execution. |
-| 0c. | Testing Guide | Core functions will be fully covered by unit tests to ensure functionality and robustness. In the guide, we will describe how to run these tests. |
-| 0d. | Docker | We will provide Dockerfiles that can be used to test all the functionality delivered with this milestone. |
-| 0e. | Article | We will publish an article/tutorial/workshop that explains |
-| 1. | **wasm** circuit implementation | We are going to implement zero knowledge circuit for **wasm** ISA. The transfer transaction consists of **wasm** ISA. We divide it into read and write access to each resource and prove with `plookup` and `recursive proof`.|
-| 2. | proof generator implementation | We are going to implement proof generator which generates the proof for **wasm** ISA. The input is execution trace of **wasm** ISA and output is zero knowledge proof. This is implemented on off-chain.|
-| 3. | proof verification implementation | We are going to implement proof verification function which verifies the proof. This is implemented on on-chain.|
-
-### Milestone 4 | Zk Wasm Transfer Rollup Node
-
-- **Estimated duration:** 1.5 month
-- **FTE:**  2
-- **Costs:** 10,000 USDT
-
-In `Milestone 4`, we are going to implement rollup node. This can aggregate transfer transactions and generate proof.
-
-| Number | Deliverable | Specification |
-| -----: | ----------- | ------------- |
-| 0a. | License | Apache 2.0 |
-| 0b. | Documentation | We will provide both `inline documentation` of the code and a `basic tutorial` that explains how users setup the node and send transfer transactions. |
-| 0c. | Testing Guide | Core functions will be fully covered by unit tests to ensure functionality and robustness. In the guide, we will describe how to run these tests. |
-| 0d. | Docker | We will provide Dockerfiles that can be used to test all the functionality delivered with this milestone. |
-| 0e. | Article | We will publish an article/tutorial/workshop that explains |
-| 1. | rollup node implementation | We are going to implement rollup node. This allows to setup the execution environment of L2 transfer transactions, generate the proof and commit the state to mainchain.|
-| 2. | client transactor implementation | We are going to implement client library to request transfer transactions to rollup node. This is the combination of Redsa wallet and proof generator. |
-| 3. | integrate network | We are going to integrate network. There are four actor mainchain, rollup node and transactor, prover. The transactor generates the transaction and delegate proof generation to prover. The prover generates proof and send it back to transactor. The transactor send transaction to rollup node. The rollup node aggregates these transaction and commit the state to mainchain. |
+| Milestone | Deliverable | Estimated Duration (month) | Deadline |
+| -----: | ----------- | ------------- | ------------- |
+| 1 | Crypto Primitive                     |  2  | 2023 7/31 |
+| 2 | Nova Folding                         |  3  | 2023 11/30 |
 
 ## Future Plans
 
-- Fully zkwasm rollup
 - Proof for XCMP
 - FHE
 - Verifiable hardware
@@ -209,9 +178,9 @@ In `Milestone 4`, we are going to implement rollup node. This can aggregate tran
     - [zero-elgamal](https://crates.io/crates/zero-elgamal)
     - [zero-pairing](https://crates.io/crates/zero-pairing)
     - [zero-plonk](https://crates.io/crates/zero-plonk)
-    - [pallet-plonk](https://github.com/zero-network/zero/tree/master/pallets/plonk)
-    - [pallet-encrypted-balance](https://github.com/zero-network/zero/tree/master/pallets/encrypted_balance)
-    - [pallet-confidential-transfer](https://github.com/zero-network/zero/tree/master/pallets/confidential_transfer)
+    - [pallet-plonk](https://github.com/KogarashiNetwork/Kogarashi/tree/master/pallets/plonk)
+    - [pallet-encrypted-balance](https://github.com/KogarashiNetwork/Kogarashi/tree/master/pallets/encrypted_balance)
+    - [pallet-confidential-transfer](https://github.com/KogarashiNetwork/Kogarashi/tree/master/pallets/confidential_transfer)
     - [above documentation](https://zero-network.github.io/zero/)
 - Wheter there are any other teams who have already contributed (financially) to the project.
   - No.

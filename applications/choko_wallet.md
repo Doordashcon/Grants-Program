@@ -22,7 +22,7 @@ Choko Wallet is a user-friendly multi-chain crypto wallet for the Polkadot ecosy
 
 - The most confusion part of the Polkadot ecosystem for new comers is the amount of blockchains there are. The PolkadotJs App (dotapps.io) allow different teams to assign different theme color to their blockchain that greatly reduce confusion. Wallets in the Polkadot ecosystem should follow the same paradigm. Moreover, we should offload the burden for the end users to choose which blockchain back to Dapp developer so that the user can connect to the desired blockchain endpoint with zero configuration.
 
-- Another issue with all wallets is the lacking of good encryption/decryption features with the user's private key. (i.e. <https://github.com/polkadot-js/common/pull/1331>) This feature is critical when Web3 is more privacy centric. It has been hard to be built because of different elliptic curve and encryption schema. We will make attempt to first adopt to the schema used by our own SkyeKiwi Network and try to generize it later.
+- Another issue with all wallets is the lacking of good encryption/decryption features with the user's private key. (i.e. https://github.com/polkadot-js/common/pull/1331) This feature is critical when Web3 is more privacy centric. It has been hard to be built because of different elliptic curve and encryption schema. We will make attempt to first adopt to the schema used by our own SkyeKiwi Network and try to generize it later.
 
 ### Project Details
 
@@ -32,9 +32,9 @@ A PoC on the redirecting mechnisim is available [here](https://github.com/RoyTim
 
 - Setup on Another Device via QR: generate a QR code that displays a *plaintext* of the seed phrase and scan it on another device. Similar to Metamask.
 
-- Email Recovery/Create Via Email: have a centralized service to send an email to the user with a link that contains *plaintext* of the seed phrase to recover the seed phrase (i.e. Email saying "Please keep this email for recovery of your wallet. Click link: <https://choko.app/recovery?11111aaaaaaa>...... "). A banner with warning should be presented when the user has more than $50 in the wallet.  
+- Email Recovery/Create Via Email: have a centralized service to send an email to the user with a link that contains *plaintext* of the seed phrase to recover the seed phrase (i.e. Email saying "Please keep this email for recovery of your wallet. Click link: https://choko.app/recovery?11111aaaaaaa...... "). A banner with warning should be presented when the user has more than $50 in the wallet.  
 
-- "Linkdrop": a feature inspired by other ecosystems. A Dapp developer might initialize a Linkdrop vault of some tokens as gas fee for their seed users. (i.e. Having 10 DOT for the first 100 signup users). A pallet might be required, so we will build a pallet on SkyeKiwi Network first to test things out. The wallet will provide the developer with a simple interface to generate a linkdrop vault and generate a linkdrop link. (i.e. <https://choko.app/claim?vault=1&authorization=0x8dad7777>..."). The developer can distribute the link drop link to users. When a user click the link, it will guide the user to create a new seed phrase and then have the gas fee token deposited to the wallet.
+- "Linkdrop": a feature inspired by other ecosystems. A Dapp developer might initialize a Linkdrop vault of some tokens as gas fee for their seed users. (i.e. Having 10 DOT for the first 100 signup users). A pallet might be required, so we will build a pallet on SkyeKiwi Network first to test things out. The wallet will provide the developer with a simple interface to generate a linkdrop vault and generate a linkdrop link. (i.e. https://choko.app/claim?vault=1&authorization=0x8dad7777..."). The developer can distribute the link drop link to users. When a user click the link, it will guide the user to create a new seed phrase and then have the gas fee token deposited to the wallet.
 
 - Encryption/Decryption: A few solutions avaliable: 1. allow encryption/decryption on Sr25519 key agreement. Drawback would be that the composed message would be hard to process outside the wallet. 2. Find a method to calculate a Curve25519 public key from a Sr25519 public key. We are not hardcore cryptographer and has no intention of implementing this ourselves. Looking for a more expertised answer to whether this is possible or if there is an implementation to it. Such conversion would greatly increase compatbility with popular Curve25519 based encryption softwares. 3. Worst case senario: ask users to register a Curve25519 public key on account creation. This is horrible but allow the encryption schema to be further compatible with other ECs like secp256k1. Would love to have a discussion on this.
 
@@ -61,7 +61,7 @@ Mockups:
 
 - **Contact Name:** Song Zhou
 - **Contact Email:** song.zhou@skye.kiwi
-- **Website:** <https://skye.kiwi>
+- **Website:** https://skye.kiwi
 
 ### Legal Structure
 
@@ -73,11 +73,11 @@ We have applied and deliverd all milestones of the [SkyeKiwi Protocol](https://g
 
 ### Team Code Repos
 
-- <https://github.com/skyekiwi/skyekiwi-network> - Main repo for the SkyeKiwi Network
+- https://github.com/skyekiwi/skyekiwi-network - Main repo for the SkyeKiwi Network
 
-- <https://github.com/skyekiwi/skyekiwi-protocol> - TypeScript implementation of the SkyeKiwi Protocol
+- https://github.com/skyekiwi/skyekiwi-protocol - TypeScript implementation of the SkyeKiwi Protocol
 
-- <https://github.com/skyekiwi/kiwi-contract> - Smart contract toolkit for submitting smart contract on SkyeKiwi Network. [Tutorial](https://docs.skye.kiwi/docs/quick-start/deploy)
+- https://github.com/skyekiwi/kiwi-contract - Smart contract toolkit for submitting smart contract on SkyeKiwi Network. [Tutorial](https://docs.skye.kiwi/docs/quick-start/deploy)
 
 ## Development Status :open_book:
 
@@ -114,7 +114,7 @@ Mostly described above in the Overview section.
 
 - **Total Estimated Duration:** 3 months
 - **Full-Time Equivalent (FTE):**  5 FTE
-- **Total Costs:** $64,000
+- **Total Costs:** $36,000
 
 ### Milestone 1
 
@@ -133,22 +133,6 @@ Mostly described above in the Overview section.
 | 2. | A Sample DApp | A sample DApp created with `@choko-wallet/sdk` to test with common functionalities. |
 | 3. | SDK | For `@choko-wallet/known-networks` will include a few popular Polkadot chains, `@choko-wallet/request-handler` will implements handler for "request for user public identity", "request to sign transaction", "request to sign message", "request to decrypt/encrypt message" (Note: encryption/decryption won't be a solution yet, see discussion above for details). |
 
-### Milestone 2
-
-- **Estimated Duration:** 1.5 month
-- **FTE:**  4 FTE
-- **Costs:** 28,000 USD
-
-| Number | Deliverable | Specification |
-| -----: | ----------- | ------------- |
-| 0a. | License | Apache 2.0 |
-| 0b. | Documentation | We will provide both **inline documentation** of the code and a **live demo**. Documentation to SDK.|
-| 0c. | Testing Guide | Core functions will be fully covered by unit tests to ensure functionality and robustness. In the guide, we will describe how to run these tests. |
-| 0d. | Docker | A Dockerfile won't be much useful for a static web app. Therefore, we are not going to provide one for this milestone. |
-| 0e. | Article | We will publish two **article** that explains 1. Dapp developers, how to get started and why to get started with Choko Wallet 2. How to create LinkDrop and rational behind it. |
-| 1. | Reactjs WebApp | dashboard (display balance, send tokens), stake tokens on selected networks. An alternative dashboard to list assets across multiple parachains and relay chains. A built-in Dapp to teleport assets between parachains (i.e. Support for only DOT and KSM) |
-| 2. | Linkdrop Pallet | A substrate pallet that enable anyone to create a linkdrop vault with X number of Y maximum recepients. The developer will create a batch of Y authorization code by `encode( signMessage(vaultId, receipientIndex) )` and distribute the authorization code to seed users. The pallet will then accept a rate limited 0 weight transaction that validate the authorization code and make transfers. |
-| 3. | Linkdrop in Web App | Web App interface to create and claim LinkDrops |
 
 ## Future Plans
 

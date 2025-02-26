@@ -1,16 +1,16 @@
 # solidity-trie-verifier
 
 - **Team Name:** Polytope Labs
-- **Payment Address:** 0xC70ac55B07A070743555C5D12B263733eCae9f92 (Ethereum DAI)
+- **Payment Address:** 0x486cbad2d704bc76f8d0cdda6aa93c94d53297b9 (Ethereum DAI)
 - **[Level](https://github.com/w3f/Grants-Program/tree/master#level_slider-levels):** 2
 
 ## Project Overview :page_facing_up:
 
 ### Overview
 
-This project aims to deliver an implementation of the parity trie [verifier](https://github.com/paritytech/trie/blob/42f086bc8748f25e978da10a9cefdb396a72b158/trie-db/src/triedb.rs#L233) as required by state proof checking algorithms( [read_child_proof_check](https://github.com/paritytech/substrate/blob/129fee774a6d185d117a57fd1e81b3d0d05ad747/primitives/state-machine/src/lib.rs#L1102), [read_proof_check_on_proving_backend](https://github.com/paritytech/substrate/blob/129fee774a6d185d117a57fd1e81b3d0d05ad747/primitives/state-machine/src/lib.rs#L1128) ) in the Solidity programming language, which would include various sub implementations( for example [NodeCodec](https://github.com/paritytech/substrate/blob/129fee774a6d185d117a57fd1e81b3d0d05ad747/primitives/trie/src/node_codec.rs#L81) for both layoutv0 & layoutv1) required to build trustless bridging protocols from the Polkadot ecosystem to the EVM ecosystem.
+This project aims to deliver an implementation of the parity trie [verifier](https://github.com/paritytech/trie/blob/42f086bc8748f25e978da10a9cefdb396a72b158/trie-db/src/triedb.rs#L233) as required by state proof checking algorithms ([read_child_proof_check](https://github.com/paritytech/substrate/blob/129fee774a6d185d117a57fd1e81b3d0d05ad747/primitives/state-machine/src/lib.rs#L1102), [read_proof_check_on_proving_backend](https://github.com/paritytech/substrate/blob/129fee774a6d185d117a57fd1e81b3d0d05ad747/primitives/state-machine/src/lib.rs#L1128)) in the Solidity programming language, which would include various sub implementations (for example [NodeCodec](https://github.com/paritytech/substrate/blob/129fee774a6d185d117a57fd1e81b3d0d05ad747/primitives/trie/src/node_codec.rs#L81) for both layoutv0 & layoutv1) required to build trustless bridging protocols from the Polkadot ecosystem to the EVM ecosystem.
 
-Goal: To create a primitive for more generalized bridging protocols like IBC, it is more efficient to verify Parachain state/storage than to use custom implementations which Darwina and Snowfork do.
+Goal: To create a primitive for more generalized bridging protocols like IBC, it is more efficient to verify Parachain state/storage than to use custom implementations which [Darwinia](https://darwinia.network/) and [Snowfork](https://snowfork.com/) do.
 
 ### Project Details
 

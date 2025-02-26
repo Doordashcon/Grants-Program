@@ -3,7 +3,7 @@
 * **Team Name:** Standard Protocol
 * **USDC Payment Address:**  0xd2234E506862991ADA75f930c6D79B4236e3E265
 * **[Level](https://github.com/w3f/Grants-Program/tree/master#level_slider-levels):** 2
-
+* **Status:** [Terminated](https://github.com/w3f/Grants-Program/pull/1160#issuecomment-1481821012)
 ## Project Overview :page_facing_up:
 
 ### Overview
@@ -114,7 +114,7 @@ Singapore
 
 ### Team Code Repos
 
-* Standard Protocol's team Github: <https://github.com/digitalnativeinc>
+* Standard Protocol's team Github: https://github.com/digitalnativeinc
 
 Please also provide the GitHub accounts of all team members. If they contain no activity, references to projects hosted elsewhere or live are also fine.
 

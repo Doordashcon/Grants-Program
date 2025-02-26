@@ -24,11 +24,12 @@ jobs:
     needs: get_filename
     if: needs.get_filename.outputs.filename
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      issues: write
     steps:
-
       - name: Checkout
-        uses: actions/checkout@v2
-
+        uses: actions/checkout@v4
       - name: Parse application file
         id: grant_parser
         uses: w3f/parse-grant-application-action@master

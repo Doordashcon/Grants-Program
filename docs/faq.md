@@ -1,31 +1,39 @@
 ---
 sidebar_position: 11
-title: FAQ
+title: 🙋 FAQ
 ---
 
 # Frequently Asked Questions<!-- omit in toc -->
 
 ## 🧭 General
 
+### How do I apply?
+
+  Please refer to the ["How to Apply" section](Process/how-to-apply.md) in our documentation.
+
 ### How much can I ask for?
 
-  Please refer to the [section on grant levels in our README](Introduction/levels.md) for funding limits.
+  Generally, there is no upper limit to grant amounts. However, the higher the requested amount, the stricter the review. For guidance, please refer to the [grant levels section](Introduction/levels.md) in our documentation.
+
+### What does it mean for payments to be at least 50% DOT?
+
+  Every milestone payment will have two parts: one in DOT, vesting linearly over two years. The percentage of your grant paid in DOT ranges from 50 to 100% and will be negotiated during the application phase. For this, we need a Polkadot address in the grant agreement. It has to be a native Polkadot address as this is the only way to receive vested DOT that can be staked. The remaining percentage of the payment is in USDC, to be paid on Polkadot Asset Hub (see "Payment Details" in the application template for options). For the payment, please submit two invoices: one for the currency part (if applicable), one for the DOT part. Since the grant agreements are denominated in USD, we ask for invoices denominated in USD; we will convert the agreed upon percentage to DOT at the day of payment based on the previous day's closing price on [CoinMarketCap](https://coinmarketcap.com). Our [invoice form](https://docs.google.com/forms/d/18BdmYEt8gvcC-5f7TMHdJftBr9dEeA2_lUfIqkH7it8/viewform) will walk you through the process.
 
 ### What activities/positions do you fund?
 
-  The Web3 Foundation's Grants Program aims to fund software development and research activities that are beneficial for the ecosystem as a whole. As such, we don't usually fund tangential costs such as business-oriented activities (marketing, business planning), events or outreach, and—for non-infrastructure projects—deployment and hosting costs, maintenance or audits. We also expect you to have a good understanding of the technologies you are planning to use, meaning that we don't fund time spent learning how to use Substrate or how to write ink! smart contracts.
+  The Web3 Foundation's Grants Program aims to fund software development and research activities that are beneficial for the ecosystem as a whole. As such, we don't usually fund tangential costs such as business-oriented activities (marketing, business planning), events, outreach, hosting costs or audits. We also expect you to have a good understanding of the technologies you are planning to use, meaning that we don't fund time spent learning how to use Substrate or how to write ink! smart contracts.
 
 ### Can anyone apply?
 
-  Projects for which a token sale has been or is being conducted are not eligible for a Web3 Foundation grant. Other than that, there are no restrictions.
+  Projects for which a token sale has been or is being conducted are not eligible for a Web3 Foundation grant. Also, we do not fund projects that actively encourage gambling, illicit trade, money laundering or criminal activities in general. See also the [application guidelines](Introduction/intro.md) in our documentation.
 
 ### Can I get an upfront payment?
 
-  No.
+  The W3F Grants Program does not offer upfront payment. If you absolutely require upfront payment, have a look at our list of [alternative funding programs](funding.md), some of which allow upfront payment.
 
 ### When do I get paid?
 
-  Payments are issued once a milestone has been successfully delivered. By ‘successful’, we mean that our Grants team has reviewed _and officially accepted_ your submission.
+  Payments are issued once a milestone has been successfully delivered. Successful delivery requires that you have submitted the milestone as per our delivery guidelines _and_ that the Grants team has reviewed _and officially accepted_ your submission. Payment is made within 14 days after approval.
 
 ### Can I reuse someone else’s open-source code?
 
@@ -62,6 +70,12 @@ title: FAQ
 
   For special cases that do not fit the regular grants structure, we provide [a form](https://docs.google.com/forms/d/e/1FAIpQLSfMfjiRmDQDRk-4OhNASM6BAKii7rz_B1jWtbCPkUh6N7M2ww/viewform). You can provide all application data by submitting this form, or submit the form with a reference to a pull request with data you are willing to make public.
 
+  Our [application template](https://github.com/w3f/Grants-Program/blob/e03a3e760846bfaf44352cb17a6763ff0fcf1a94/.github/pull_request_template.md?plain=1#L21) also offers the possibility to make the application public, but to keep its discussion private.
+
+### What is KYC/KYB and why do I have to provide this data?
+
+  In order to comply with regulations, the Web3 Foundation is required to perform KYC (Know Your Customer) checks on individuals and KYB (Know Your Business) checks on entities applying for a grant in order to verify their identity. For these checks, we ask you to provide information about yourself and/or the entity you are representing through our provider [Sumsub](https://sumsub.com/). If you have any problems with or concerns about this process, please [reach out to us](mailto:grants@web3.foundation).
+
 ## 🥳 After Approval
 
 ### When can I apply for a follow-up grant?
@@ -74,7 +88,7 @@ title: FAQ
 
 ### Can I list the Web3 Foundation as a partner?
 
-  No. Once the grants team has accepted your first milestone, you may display our [grants badge](Support%20Docs/grant-badge-guidelines) in a project-specific context, such as the repository containing the grant project work.
+  No. Once the grants team has accepted your first milestone, you may display our [grants badge](Support%20Docs/grant-badge-guidelines.md) in a project-specific context, such as the repository containing the grant project work.
 
 ### Can you help me advertise my project?
 
@@ -88,7 +102,7 @@ title: FAQ
 
 ### How do I submit a milestone?
 
-  For details, please refer to the [milestone delivery guidelines](Support%20Docs/milestone-deliverables-guidelines.md) for the respective grants program. Generally speaking, the most important part of a delivery is a list of **the same deliverables listed in the application** with links to their implementation/realisation (ideally pointing to a specific commit or tag, so you can continue working on your repository without messing up your delivery and complicating our evaluation) and any additional notes you might have. The list of deliverables for each of your milestones should be defined in your grant agreement.
+  For details, please refer to the [milestone delivery guidelines](Support%20Docs/milestone-deliverables-guidelines.md). Generally speaking, the most important part of a delivery is a list of **the same deliverables listed in the application** with links to their implementation/realisation (ideally pointing to a specific commit or tag, so you can continue working on your repository without messing up your delivery and complicating our evaluation) and any additional notes you might have. The list of deliverables for each of your milestones should be defined in your grant agreement.
 
 ### Can I submit two or more milestones at once?
 
