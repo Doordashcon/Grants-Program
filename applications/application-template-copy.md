@@ -28,15 +28,15 @@ Leveraging Polkadot, OmniRamp bolsters Web3 adoption, bridging traditional finan
 
   - Non-Custodial Trading.
 
-  - Assets are secured via multi-signature escrow pallet, removing third-party custody risks.
+  - Assets are secured via a multi-signature escrow pallet, removing third-party custody risks.
 
   - Initial support for DOT/USD transitions, with ongoing research for other pairs.
 
 *Cross-Chain Liquidity Engine*
 
-  - Polkadot Native: Leverages XCM (Cross-Consensus Messaging) for seamless asset transfers across parachains (e.g., DOT, ASTR, USDT(AssetHub)).
+  - Polkadot Native: Leverages XCM for seamless asset transfers across parachains (e.g., DOT, ASTR, USDT(AssetHub)).
 
-  - Multi-chain Integration: Utilizes trustless bridges (Hyperbridge, Snowfork) to enable multi-chain p2p transitions.
+  - Future Multi-chain Integration: Utilizes trustless bridges (Hyperbridge, Snowfork) to enable multi-chain p2p transitions.
 
 *Privacy-First Compliance*
 
@@ -44,13 +44,11 @@ Leveraging Polkadot, OmniRamp bolsters Web3 adoption, bridging traditional finan
 
   - Privacy preserving chat platform for seller to buyer comunnications.
 
-  - ZK-Proof Verification: Sellers cryptographically confirm fiat receipts without exposing sensitive data.
-
 *Dispute Resolution Framework*
 
-  - DAO Arbitration: Decentralized council of staked arbitrators resolves conflicts, with penalties for malicious rulings.
+  - DAO Arbitration: Decentralized council of staked arbitrators to resolve conflicts, with penalties for malicious rulings.
 
-  - Auto-Refund Mechanisms: Funds returned automatically if disputes remain unresolved for 24h.
+  - Auto-Refund Mechanisms: Funds returned automatically if disputes remain unresolved for 1 Era(24H on Polkadot and 6H on Kusama).
 
 **Team Motivation**
 
@@ -68,51 +66,46 @@ Our team brings decades of combined experience in:
 
 - Interoperability: Background in building cross-chain protocols(i.e. Hyperbridge).
 
-- Governance: Architected DAOs(i.e. Secretary Program).
+- Governance: Architected DAOs(i.e. Secretary Program for the polkadot fellowship).
 
 
 *What Excites us Technically*
 
 - Trustless Interop Transitions: Enabling cross-chain escrow without wrapped assets or bridge risks.
 
-- Reputation Pallet Innovation: Building sybil-resistant scoring purely on-chain.
+- Reputation Pallet: Building sybil-resistant scoring purely on-chain.
 
-- LibP2P Integration: Decentralizing communication layers often overlooked in DeFi.
+- LibP2P Integration: Decentralizing communication layer.
 
 
 ## Project Details
 
 ### Protocol Overview
-OmniRamp’s protocol enables seamless, decentralized fiat-crypto transactions through a four-step process:
-
-#### How It Works
+OmniRamp’s protocol enables seamless, decentralized fiat-crypto transitions through a four-step process:
 
 *Offer Creation*
 
-- Token Selection: Merchants list supported pairs(e.g., DOT/USD, ETH/USD, USDT/USD).
+- Token Selection: Merchants list supported pairs(e.g., DOT/USD, DOT/EUR).
 
-- Pricing: Set exchange rates (e.g., 1 DOT = $7 USD) and choose fiat payment methods (bank transfer, PayPal, mobile money).
-
+- Pricing: Set exchange rates (e.g., 1 DOT = $7 USD) and choose fiat payment methods (bank transfer, PayPal e.t.c).
 
 *User Engagement*
 
-- Order Matching: Users filter offers by action (Buy/Sell), token, price, and merchant reputation (1–5 stars).
+- Order Matching: User (buyers/sellers) filter offers by action (Buy/Sell), pairs, price, and merchant reputation (1–5 stars).
 
 - Escrow Initialization: Accepted Offers are secured via OmniRamp’s multi-sig escrow pallet, ensuring merchant cannot withdraw once a user initiates a transaction.
 
-
 *Settlement*
 
-- Off-Chain Payment: Buyer sends fiat via the seller’s preferred method (e.g., wire transfer).
+- Off-Chain Payment: Payer (User or merchant) sends fiat via recipient’s preferred method (e.g., wire transfer, bank transfer, PayPal).
 
 - Proof Submission: Buyer uploads encrypted payment proof (e.g., transaction ID) using LibP2P’s Noise Protocol.
 
-
 *Asset Release or Dispute*
 
-- Auto-Release: Seller confirms payment within 24h → escrow releases crypto to buyer.
+- Auto-Release: User / Merchant confirms payment within 1Era → escrow releases crypto to User / Merchant.
 
-- Dispute Trigger: If unresolved, escrow locks funds and initiates DAO arbitration (24h response window).
+- Dispute Trigger: If unresolved, escrow locks funds and initiates DAO arbitration (7Era response window).
 
 
 #### Escrow Model: Secure, Time-Bound Custody
@@ -121,7 +114,7 @@ OmniRamp’s escrow system ensures fairness and eliminates counterparty risk:
 
 *Multi-Chain Escrow Pallets*
 
-- Built on Substrate, escrow pallet support assets from Polkadot parachains (via XCM) and external chains (via bridges).
+- Built on Substrate, escrow pallet initially support assets from Polkadot parachains (via XCM) with support for external chains (via bridges) in the near future.
 
 - Funds are held in 2-of-3 multi-sig accounts, requiring buyer/seller/arbitrator consensus for release.
 
@@ -131,7 +124,7 @@ OmniRamp’s escrow system ensures fairness and eliminates counterparty risk:
 
 - Slashing: Arbitrators acting maliciously lose 50% of their stake.
 
-- Auto-Refund: If seller doesn’t confirm/reject payment within 24h, funds return to buyer automatically.
+- Auto-Refund: If seller doesn’t confirm/reject payment within 1Era, a dispute case is issued.
 
 *Fraud Prevention*
 
@@ -139,34 +132,43 @@ OmniRamp’s escrow system ensures fairness and eliminates counterparty risk:
 
 - Sybil resistance: New users face lower trade limits until reputation is established.
 
+Benefits:
 
-#### Cross-Chain Token Support (XCM) - Multichain support with hyperbridge
+1. 
 
-*Unified Liquidity Pool*
+2. 
 
-- Merchants list tokens from supported chains (e.g., DOT from Relay Chain, USDT from AssetHub, ASTR from Astar).
+3. 
 
-- Buyers purchase assets natively without wrapping (e.g., trade DOT for ETH directly via XCM).
+
+#### Cross-Chain Token Support (XCM)
+
+*Unified Asset Availability*
+
+- Merchants list tokens from supported chains (e.g., DOT from Relay Chain).
+
+- Buyers purchase assets natively without wrapping (e.g., trade DOT for USDT on AssetHub directly via XCM).
 
 
 *XCM Workflow*
 
-(Lock-and-Mint)When a buyer selects a cross-chain asset (e.g., ETH), OmniRamp:
+(Lock-and-Transfer)When a buyer selects a cross-chain asset (e.g., USDT on AssetHub), OmniRamp:
 
-- Locks ETH on the origin chain via Snowfork’s Ethereum bridge.
+- Locks USDT via escrow pallet's unified address on the source chain.
 
-- Mints a XCM voucher on OmniRamp’s parachain for escrow.
+- Post-trade, unlocking the original asset and send to reciepient on the source chain.
 
-(Burn-and-Unlock)Post-trade, vouchers are burned, unlocking the original asset.
 
-Benefits Over Competitors:
+Benefits:
 
-No Bridge Risk: Avoids centralized bridging solutions prone to exploits.
+1. No Bridge Risk: Avoids centralized bridging solutions prone to exploits.
 
-Atomic Swaps: XCM ensures trades either complete fully or revert, eliminating partial failures.
+2. Atomic Swaps: XCM ensures trades either complete fully or revert, eliminating partial failures.
+
 
 **API Specifications:**
 
+--------------
 - Mockups/designs of any UI components
 - Data models / API specifications of the core functionality
 - An overview of the technology stack to be used
@@ -181,6 +183,276 @@ Things that shouldn’t be part of the application (see also our [FAQ](../docs/f
 - The (future) tokenomics of your project
 - For non-infrastructure projects—deployment and hosting costs, maintenance or audits
 - Business-oriented activities (marketing, business planning), events or outreach
+---------
+
+### 1. Order Matching Pallet
+
+#### Functions
+```rust
+// Create new P2P offer
+fn create_order(
+    origin: OriginFor<T>,
+    pair: (AssetId, FiatCurrency), // (DOT, USD)
+    action: OrderAction, // Buy/Sell
+    price: FixedU128, // Price per 1 crypto unit
+    payment_method: PaymentMethod,
+    quantity: Balance,
+) -> DispatchResult;
+
+// Match existing order
+fn match_order(
+    origin: OriginFor<T>,
+    order_id: OrderId,
+    counterparty: T::AccountId,
+) -> DispatchResult;
+
+// Update order parameters
+fn update_order(
+    origin: OriginFor<T>,
+    order_id: OrderId,
+    new_price: Option<FixedU128>,
+    new_quantity: Option<Balance>,
+) -> DispatchResult;
+
+// Cancel unfilled order
+fn cancel_order(
+    origin: OriginFor<T>,
+    order_id: OrderId,
+) -> DispatchResult;
+
+```
+
+#### Data Structure
+```rust
+struct Order<AccountId, Balance> {
+    creator: AccountId,
+    pair: (AssetId, FiatCurrency),
+    action: OrderAction,
+    price: FixedU128,
+    payment_method: PaymentMethod,
+    quantity: Balance,
+    status: OrderStatus, // Open/Matched/Cancelled
+    created_at: BlockNumber,
+}
+
+enum OrderStatus {
+    Open,
+    Matched { counterparty: AccountId, matched_at: BlockNumber },
+    Cancelled, // Cleanup cancelled orders from storage.
+}
+```
+
+#### Events
+```rust
+OrderCreated(AccountId, OrderId, AssetId, FiatCurrency);
+OrderMatched(OrderId, AccountId, AccountId); // order_id, maker, taker
+OrderUpdated(OrderId, FixedU128, Balance);
+OrderCancelled(AccountId, OrderId);
+```
+
+### 2. Escrow Pallet
+
+#### Functions
+
+```rust
+// Initiate Merchant into Escrow Pallet
+// The source chain of funds should add this escrow pallet as a proxy.
+fn init() -> DispatchResult;
+
+
+
+// Lock funds for matched order
+fn lock_funds(
+    origin: OriginFor<T>,
+    order_id: OrderId,
+    #[compact] amount: Balance,
+) -> DispatchResult;
+
+// Release funds to counterparty
+fn release_funds(
+    origin: OriginFor<T>,
+    escrow_id: EscrowId,
+    release_to: AccountId,
+) -> DispatchResult;
+
+// Initiate dispute resolution
+fn initiate_dispute(
+    origin: OriginFor<T>,
+    escrow_id: EscrowId,
+    proof: DisputeProof,
+) -> DispatchResult;
+
+```
+
+
+#### Data Structures
+```rust
+struct Escrow<AccountId, Balance> {
+    buyer: AccountId,
+    seller: AccountId,
+    asset: AssetId,
+    amount: Balance,
+    status: EscrowStatus,
+    created_at: BlockNumber,
+    timeout: BlockNumber,
+}
+
+enum EscrowStatus {
+    Locked,
+    Released(AccountId),
+    Disputed(DisputeId),
+    Refunded,
+}
+
+```
+
+#### Events
+```rust
+FundsLocked(EscrowId, AccountId, Balance);
+FundsReleased(EscrowId, AccountId);
+DisputeInitiated(EscrowId, DisputeId);
+AutoRefundTriggered(EscrowId);
+```
+
+
+#### 3. Reputation System Pallet
+
+##### Functions
+```rust
+// Update reputation after trade completion
+fn update_reputation(
+    origin: OriginFor<T>,
+    user: AccountId,
+    rating: u8, // 1-5
+    feedback: Vec<u8>,
+) -> DispatchResult;
+
+// Get current reputation score
+fn get_reputation(user: AccountId) -> ReputationScore;
+```
+
+
+#### Events
+```rust
+ReputationUpdated(AccountId, u8);
+PenaltyApplied(AccountId, u8); // Score reduction
+```
+
+
+##### 4. Governance & Dispute Pallet
+
+#### Functions
+```rust
+// Create new dispute case
+fn create_dispute(
+    origin: OriginFor<T>,
+    escrow_id: EscrowId,
+    evidence: Vec<u8>,
+) -> DispatchResult;
+
+// Arbitrator vote on dispute
+fn vote_on_dispute(
+    origin: OriginFor<T>,
+    dispute_id: DisputeId,
+    verdict: bool, // true = favor claimant
+) -> DispatchResult;
+
+// Slash malicious arbitrator
+fn slash_arbitrator(
+    origin: OriginFor<T>,
+    arbitrator: AccountId,
+    slash_amount: Balance,
+) -> DispatchResult;
+
+```
+
+##### Data Structures
+```rust
+struct DisputeCase {
+    escrow_id: EscrowId,
+    claimant: AccountId,
+    respondent: AccountId,
+    status: DisputeStatus,
+    votes: BTreeMap<AccountId, bool>,
+    outcome: Option<bool>,
+}
+
+struct ArbitratorStake {
+    account: AccountId,
+    staked: Balance,
+    successful_cases: u32,
+    penalized: bool,
+}
+```
+
+#### Data Structures
+```rust
+struct DisputeCase {
+    escrow_id: EscrowId,
+    claimant: AccountId,
+    respondent: AccountId,
+    status: DisputeStatus,
+    votes: BTreeMap<AccountId, bool>,
+    outcome: Option<bool>,
+}
+
+struct ArbitratorStake {
+    account: AccountId,
+    staked: Balance,
+    successful_cases: u32,
+    penalized: bool,
+}
+
+```
+
+#### Events
+```rust
+DisputeCreated(DisputeId, EscrowId);
+VoteRecorded(DisputeId, AccountId, bool);
+DisputeResolved(DisputeId, bool);
+ArbitratorSlashed(AccountId, Balance);
+
+```
+
+##### 6. XCM Integration Pallet
+
+```rust
+
+// In the config items.
+```
+
+
+**Technology Stack**
+
+order pallet - list token for their price and sellers also, expose the functions to match buyers to sellers
+
+counter part to initiate call. first call firt person to sign then ordermatching storage, match eith a status...
+
+order pallet.
+
+abitrator pall
+
+
+escro pallet
+
+order pallet
+
+xcm milestones 
+
+business logic and the communication protocol
+
+Abitrators actions. for malicious rulings
+
+communication protocol 
+
+
+xcm - 
+
+
+support parachains
+
+
+
 
 ### Ecosystem Fit
 
