@@ -42,11 +42,11 @@ Leveraging Polkadot, OmniRamp bolsters Web3 adoption, bridging traditional finan
 
   - Zero-KYC Model: On-chain reputation scoring replaces centralized identity checks, prioritizing user privacy.
 
-  - Privacy preserving chat platform for seller to buyer comunnications.
+  - Privacy preserving chat platform.
 
 *Dispute Resolution Framework*
 
-  - DAO Arbitration: Decentralized council of staked arbitrators to resolve conflicts, with penalties for malicious rulings.
+  - DAO Arbitration: Decentralized collective of staked arbitrators to resolve conflicts, with penalties for malicious rulings.
 
   - Auto-Refund Mechanisms: Funds returned automatically if disputes remain unresolved for 1 Era(24H on Polkadot and 6H on Kusama).
 
@@ -60,7 +60,7 @@ CEX hacks has underscored the urgent need for permissionless systems to become t
 
 *Decentralized Systems Advocates and Implementors*
 
-Our team brings decades of combined experience in:
+Our team brings a decade of combined experience in:
 
 - Substrate Development: Core contributors to Polkadot parachains since 2021 and current Polkadot fellowship members.
 
@@ -71,7 +71,7 @@ Our team brings decades of combined experience in:
 
 *What Excites us Technically*
 
-- Trustless Interop Transitions: Enabling cross-chain escrow without wrapped assets or bridge risks.
+- Trustless Interop Transitions: Enabling cross-chain escrow without wrapped assets or bridge risks. # Does polkadot has a unified address for all connected chains?
 
 - Reputation Pallet: Building sybil-resistant scoring purely on-chain.
 
@@ -128,17 +128,63 @@ OmniRamp’s escrow system ensures fairness and eliminates counterparty risk:
 
 *Fraud Prevention*
 
-- Reputation penalties: Sellers lose 20% of their score for unresponsive behavior.
+1. Reputation Penalties
 
-- Sybil resistance: New users face lower trade limits until reputation is established.
+    - **Tiered Penalties**
+
+        - First offense (unresponsiveness*): 10% reputation loss.
+
+        - Repeat offenses: Penalty increases by 5% per incident (e.g., 15% on second offense).
+
+        - After 3 offenses: Temporary suspension and mandatory resolution training.
+
+    - **Appeal Process**: Allow sellers to contest penalties with evidence (e.g., technical issues, emergencies).
+
+    - **Recovery Path**: Regain lost reputation through successful transactions (e.g., +5% per 5 completed orders).
+
+2. Sybil Resistance
+
+    - **Gradual Trust Building**: New Users: Start with low trade limits (e.g., $100 limit) until reputation is establised.
+
+    - **Reputation Tiers**: limits change based on
+
+        - Transaction history (e.g., 10+ successful trades unlocks $1,000 limit).
+
+        - Community endorsements (e.g., reviews from trusted users).
+
+        - Reputation penalties: Sellers lose 20% of their score for unresponsive behavior.
+
+3. Malicious Behavior Detection
+
+    - Contextual Reputation Deductions:
+
+        - Minor failures (e.g., payment timeout): 5% reputation decrease.
+
+        - Repeat failures (3+ in 7 days): 15% decrease + initiate abitrator review for intent.
+
+        - Proven fraud: Account deletion.
+
+    - Fraud Triggers:
+
+        - Auto-flag users with high cancellation rates (>30%) or disputed orders.
+
+        - Investigate patterns (e.g., users who only initiate only high-value trades).
+
+4. Positive Reinforcement
+
+    - Reward good actors with:
+
+        - Reputation boosts for consistent on-time completions (e.g., +3% per 5 flawless trades).
+
+        - Badges or perks (e.g., "Trusted Seller" status, reduced platform fees).
 
 Benefits:
 
-1. 
+1. Funds remain on native chains via XCM, eliminating bridge risks while enabling multi-chain trading. Users retain custody without exposure to wrapped asset vulnerabilities.
 
-2. 
+2. 2-of-3 multi-sig escrow prevents unilateral fund access, while stake-weighted DAO arbitration aligns incentives for honest outcomes. Slashing disincentivizes malicious arbitrators.
 
-3. 
+3. Auto-refunds + reputation penalties create economic costs for bad actors. Sybil-resistant limits for new users reduce spam, while responsive sellers gain higher trade caps over time.
 
 
 #### Cross-Chain Token Support (XCM)
@@ -168,57 +214,29 @@ Benefits:
 
 **API Specifications:**
 
---------------
-- Mockups/designs of any UI components
-- Data models / API specifications of the core functionality
-- An overview of the technology stack to be used
-- Documentation of core components, protocols, architecture, etc. to be deployed
-- PoC/MVP or other relevant prior work or research on the topic
-- What your project is *not* or will *not* provide or implement
-  - This is a place for you to manage expectations and clarify any limitations that might not be obvious
-
-
-Things that shouldn’t be part of the application (see also our [FAQ](../docs/faq.md)):
-
-- The (future) tokenomics of your project
-- For non-infrastructure projects—deployment and hosting costs, maintenance or audits
-- Business-oriented activities (marketing, business planning), events or outreach
----------
-
 ### 1. Order Matching Pallet
 
 #### Functions
 ```rust
-// Create new P2P offer
-fn create_order(
-    origin: OriginFor<T>,
-    pair: (AssetId, FiatCurrency), // (DOT, USD)
-    action: OrderAction, // Buy/Sell
-    price: FixedU128, // Price per 1 crypto unit
-    payment_method: PaymentMethod,
-    quantity: Balance,
-) -> DispatchResult;
+/// Create new P2P offer
+#[pallet::weight(T::WeightInfo::create_order())]
+#[pallet::call_index(0)]
+pub fn create_order() -> DispatchResult;
 
-// Match existing order
-fn match_order(
-    origin: OriginFor<T>,
-    order_id: OrderId,
-    counterparty: T::AccountId,
-) -> DispatchResult;
+/// Match existing order
+#[pallet::weight(T::WeightInfo::match_order())]
+#[pallet::call_index(1)]
+pub fn match_order() -> DispatchResult;
 
-// Update order parameters
-fn update_order(
-    origin: OriginFor<T>,
-    order_id: OrderId,
-    new_price: Option<FixedU128>,
-    new_quantity: Option<Balance>,
-) -> DispatchResult;
+/// Update order parameters
+#[pallet::weight(T::WeightInfo::update_order())]
+#[pallet::call_index(2)]
+pub fn update_order() -> DispatchResult;
 
-// Cancel unfilled order
-fn cancel_order(
-    origin: OriginFor<T>,
-    order_id: OrderId,
-) -> DispatchResult;
+/// Cancel unfilled order
+#[pallet::weight(T::WeightInfo::cancel_order())]
+#[pallet::call_index(3)]
+pub fn cancel_order() -> DispatchResult;
 
 ```
 
@@ -255,32 +273,27 @@ OrderCancelled(AccountId, OrderId);
 #### Functions
 
 ```rust
-// Initiate Merchant into Escrow Pallet
-// The source chain of funds should add this escrow pallet as a proxy.
-fn init() -> DispatchResult;
+/// Initiate Merchant into Escrow Pallet
+/// The source chain of funds should add this escrow pallet as a proxy.
+#[pallet::weight(T::WeightInfo::init())]
+#[pallet::call_index(0)]
+pub fn init() -> DispatchResult;
 
 
+/// Lock funds for matched order
+#[pallet::weight(T::WeightInfo::lock_funds())]
+#[pallet::call_index(1)]
+fn lock_funds() -> DispatchResult;
 
-// Lock funds for matched order
-fn lock_funds(
-    origin: OriginFor<T>,
-    order_id: OrderId,
-    #[compact] amount: Balance,
-) -> DispatchResult;
+/// Release funds to counterparty
+#[pallet::weight(T::WeightInfo::release_funds())]
+#[pallet::call_index(2)]
+fn release_funds() -> DispatchResult;
 
-// Release funds to counterparty
-fn release_funds(
-    origin: OriginFor<T>,
-    escrow_id: EscrowId,
-    release_to: AccountId,
-) -> DispatchResult;
-
-// Initiate dispute resolution
-fn initiate_dispute(
-    origin: OriginFor<T>,
-    escrow_id: EscrowId,
-    proof: DisputeProof,
-) -> DispatchResult;
+/// Initiate dispute resolution
+#[pallet::weight(T::WeightInfo::initiate_dispute())]
+#[pallet::call_index(3)]
+fn initiate_dispute() -> DispatchResult;
 
 ```
 
@@ -320,15 +333,9 @@ AutoRefundTriggered(EscrowId);
 ##### Functions
 ```rust
 // Update reputation after trade completion
-fn update_reputation(
-    origin: OriginFor<T>,
-    user: AccountId,
-    rating: u8, // 1-5
-    feedback: Vec<u8>,
-) -> DispatchResult;
+fn update_reputation() -> DispatchResult;
 
-// Get current reputation score
-fn get_reputation(user: AccountId) -> ReputationScore;
+fn reputation_judgement() -> DispatchResult;
 ```
 
 
@@ -343,26 +350,14 @@ PenaltyApplied(AccountId, u8); // Score reduction
 
 #### Functions
 ```rust
-// Create new dispute case
-fn create_dispute(
-    origin: OriginFor<T>,
-    escrow_id: EscrowId,
-    evidence: Vec<u8>,
-) -> DispatchResult;
+/// Create new dispute case
+fn create_dispute() -> DispatchResult;
 
-// Arbitrator vote on dispute
-fn vote_on_dispute(
-    origin: OriginFor<T>,
-    dispute_id: DisputeId,
-    verdict: bool, // true = favor claimant
-) -> DispatchResult;
+/// Arbitrator vote on dispute
+fn vote_on_dispute() -> DispatchResult;
 
-// Slash malicious arbitrator
-fn slash_arbitrator(
-    origin: OriginFor<T>,
-    arbitrator: AccountId,
-    slash_amount: Balance,
-) -> DispatchResult;
+/// Slash malicious arbitrator
+fn slash_arbitrator() -> DispatchResult;
 
 ```
 
@@ -414,44 +409,19 @@ ArbitratorSlashed(AccountId, Balance);
 
 ```
 
-##### 6. XCM Integration Pallet
+##### 6. XCM Integration
 
 ```rust
 
-// In the config items.
+// Pallet Conifgs.
 ```
 
 
 **Technology Stack**
 
-order pallet - list token for their price and sellers also, expose the functions to match buyers to sellers
-
-counter part to initiate call. first call firt person to sign then ordermatching storage, match eith a status...
-
-order pallet.
-
-abitrator pall
 
 
-escro pallet
-
-order pallet
-
-xcm milestones 
-
-business logic and the communication protocol
-
-Abitrators actions. for malicious rulings
-
-communication protocol 
-
-
-xcm - 
-
-
-support parachains
-
-
+**Core Components**
 
 
 ### Ecosystem Fit
@@ -531,40 +501,85 @@ Below we provide an **example roadmap**. In the descriptions, it should be clear
 
 ### Overview
 
-- **Total Estimated Duration:** Duration of the whole project (e.g. 2 months)
-- **Full-Time Equivalent (FTE):**  Average number of full-time employees working on the project throughout its duration (see [Wikipedia](https://en.wikipedia.org/wiki/Full-time_equivalent), e.g. 2 FTE)
-- **Total Costs:** Requested amount in USD for the whole project (e.g. 12,000 USD). Note that the acceptance criteria and additional benefits vary depending on the [level](../README.md#level_slider-levels) of funding requested.
+- **Total Estimated Duration:** 4 Months
+- **Full-Time Equivalent (FTE):**  6 FTE
+- **Total Costs:** $85,000 USD
 - **DOT %:** Percentage of Total Costs to be paid in (vested) DOT (≥ 50%)
 
-### Milestone 1 Example — Basic functionality
+### Milestone 1 Example — Order Maching and Escrow System
 
 - **Estimated duration:** 1 month
 - **FTE:**  1,5
-- **Costs:** 8,000 USD
+- **Costs:** $35,000 USD
 
 > [!NOTE]
 > **The default deliverables 0a-0d below are mandatory for all milestones**, and deliverable 0e at least for the last one.
 
 | Number | Deliverable | Specification |
 | -----: | ----------- | ------------- |
-| **0a.** | License | Apache 2.0 / GPLv3 / MIT / Unlicense. See the [delivery guidelines](https://grants.web3.foundation/docs/Support%20Docs/milestone-deliverables-guidelines#license) for details. |
-| **0b.** | Documentation | We will provide both **inline documentation** of the code and a basic **tutorial** that explains how a user can (for example) spin up one of our Substrate nodes and send test transactions, which will show how the new functionality works. See the [delivery guidelines](https://grants.web3.foundation/docs/Support%20Docs/milestone-deliverables-guidelines#documentation) for details. |
-| **0c.** | Testing and Testing Guide | Core functions will be fully covered by comprehensive unit tests to ensure functionality and robustness. In the guide, we will describe how to run these tests. See the [delivery guidelines](https://grants.web3.foundation/docs/Support%20Docs/milestone-deliverables-guidelines#testing-guide) for details. |
-| **0d.** | Docker | We will provide a Dockerfile(s) that can be used to test all the functionality delivered with this milestone. |
-| 0e. | Article | We will publish an **article**/workshop that explains [...] (what was done/achieved as part of the grant). (Content, language, and medium should reflect your target audience described above.) |
-| 1. | Substrate module: X | We will create a Substrate module that will... (Please list the functionality that will be implemented for the first milestone. You can refer to details provided in previous sections.) |
-| 2. | Substrate module: Y | The Y Substrate module will... |
-| 3. | Substrate module: Z | The Z Substrate module will... |
-| 4. | Substrate chain | Modules X, Y & Z of our custom chain will interact in such a way... (Please describe the deliverable here as detailed as possible) |
-| 5. | Library: ABC | We will deliver a JS library that will implement the functionality described under "ABC Library" |
-| 6. | Smart contracts: ... | We will deliver a set of ink! smart contracts that will...
+| **0a.** | License | Apache 2.0 |
+| **0b.** | Documentation | We will provide both inline documentation of the code and a basic tutorial that explains how a user can spin up the annotation interface and perform basic tasks. |
+| **0c.** | Testing and Testing Guide | Core functions will be fully covered by comprehensive unit tests to ensure functionality and robustness. In the guide, we will describe how to run these tests. |
+| **0d.** | Docker | We will provide a Dockerfile(s) that can be used to test functionalities delivered with this milestone. |
+| 0e. | Article | We will publish an article that explains what was achieved as part of the grant. |
+| 0f. | OmniRamp Specification | We will put together a technical specification detailing the OmniRamp Protocol. |
+| 1a. | Order Matching Pallet | Implement public interface of order lifecycle management. |
+| 2a. | Multi-Sig Escrow Pallet | Implement public interface 2-of-3 escrow management pallet. |
+| 3a. | Reputation Baseline | Transaction tracking / success rates per account. |
+| 4. | RPC APIs | JSPN-RPC endpoints for order book interaction. |
 
 
-### Milestone 2 Example — Additional features
+### Milestone 2 — DAO Abitration and Reputation System
 
 - **Estimated Duration:** 1 month
 - **FTE:**  1,5
-- **Costs:** 8,000 USD
+- **Costs:** $20,000 USD
+
+| Number | Deliverable | Specification |
+| -----: | ----------- | ------------- |
+| **0a.** | License | Apache 2.0 |
+| **0b.** | Documentation | We will provide both **inline documentation** of the code and a README stating objectives of DAO arbitration process and reputation system used by OmniRamp. |
+| **0c.** | Testing and Testing Guide | Core functions will be fully covered by comprehensive unit tests to ensure functionality and robustness. In the guide, we will describe how to run these tests. |
+| **0d.** | Docker | We will provide a Dockerfile(s) that can be used to test functionalities delivered with this milestone. |
+| 1. | Governance Pallet | Implement Stake-weighted voting with 50% slashing for malicious rulings. |
+| 2. | Reputation Engine | Tiered penalties, sybli-resistant limits and recovery paths. |
+| 3. | Dispute Workflow | End-to-end testing of dispute creation -> resolution -> enforcement. |
+| 4. | Staking Interface | CLI tool for arbitrator registration/stake management. |
+
+
+### Milestone 3 — Communication Protocol
+
+- **Estimated Duration:** 1 month
+- **FTE:**  1,5
+- **Costs:** $15,000 USD
+
+| Number | Deliverable | Specification |
+| -----: | ----------- | ------------- |
+| **0a.** | License | Apache 2.0 |
+| **0b.** | Documentation | LibP2P chat protocol specifications. |
+| **0c.** | Testing and Testing Guide | Message encryption/decryption test suite. |
+| **0d.** | Docker | Networked nodes with encrypted chat capabilities. |
+| 1. | LibP2P Module | End-to-end encrypted chat protocol. |
+| 2. | Proof Attachments | File upload using IPFS. |
+| 3. | Reputation Integration | Auto-flag users abusing chat (spam/scams). |
+
+
+### Milestone 4 — XCMP (AssetHub)
+
+- **Estimated Duration:** 1 month
+- **FTE:**  1,5
+- **Costs:** $10,000 USD
+
+| Number | Deliverable | Specification |
+| -----: | ----------- | ------------- |
+| **0a.** | License | Apache 2.0 |
+| **0b.** | Documentation | XCM asset fulfilment guides. |
+| **0c.** | Testing and Testing Guide | Cross-chain test cases (OmniRamp ↔ Relay Chain ↔ AssetHub). |
+| **0d.** | Docker | Multi-chain test environment. |
+| 1. | XCM Escrow Adapter | Lock/unlock assets across parachains via ReserveAssetDeposit. |
+| 2. | AssetHub Integration | Support USDT transfers on Polkadot AssetHub. |
+| 3. | Unified Address System | Single account interaction across connected chains. |
+| 4. | Multichain Research | Technical spec for Hyperbridge/Snowfork integration. |
 
 ...
 
