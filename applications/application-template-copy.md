@@ -411,47 +411,61 @@ ArbitratorSlashed(AccountId, Balance);
 
 ##### 6. XCM Integration
 
-```rust
-
-// Pallet Conifgs.
-```
+**Enabling cross-chain escrow and asset transfers via Polkadot’s native interoperability layer.**
 
 
 **Technology Stack**
+Blockchain Layer:
 
+- polkadot-sdk
 
+Communication
 
-**Core Components**
+- LibbP2P
+
+Storage
+
+- IPFS
 
 
 ### Ecosystem Fit
 
-Help us locate your project in the Polkadot/Substrate/Kusama landscape and what problems it tries to solve by answering each of these questions:
+Where does OmniRamp fit?
+OmniRamp fills Polkadot’s critical gap in decentralized fiat access, serving as the missing bridge between traditional finance and multi-chain DeFi. Unlike CEX-centric solutions, it leverages:
 
-- Where and how does your project fit into the ecosystem?
-- Who is your target audience (parachain/dapp/wallet/UI developers, designers, your own user base, some dapp's userbase, yourself)?
-- What need(s) does your project meet?
-- How did you identify these needs? Please provide evidence in the form of (scientific) articles, forum discussions, case studies, or raw data.
-- Are there any other projects similar to yours in the Substrate / Polkadot / Kusama ecosystem?
-  - If so, how is your project different? Please identify and assess any projects addressing the same need and explain how your project is distinct. Feel free to include applicable research data, statistics, or metrics.
-  - If not, please indicate why such a project might not have been possible, successful, or attempted. 
-- Are there any projects similar to yours in related ecosystems? 
+Polkadot’s shared security for escrow trustlessness.
+
+XCM for cross-chain dispursment wrapped assets.
+
+##### Target Audience
+End Users: Crypto newcomers needing low-friction fiat onboarding.
+
+Parachains: Teams seeking fiat onramp liquidity bootstraping.
+
+DEXs: Integrate fiat ramps via OmniRamp’s API (e.g., HydraDX).
+
+##### Identified Needs
+Problem: Developing markets lack access to CEXs (Chainalysis 2023).
+
+Solution: P2P model reduces regional barriers (World Bank Findex Report 2021).
+
+##### Competitive Landscape
+Polkadot Ecosystem: No direct competitors; existing bridges lack fiat pairs.
+
+External Ecosystems: Bisq (Bitcoin-only), LocalCryptos (Ethereum-centric, custodial escrow).
 
 ## Team :busts_in_silhouette:
 
-> [!IMPORTANT]
-> Please note that the data provided in this section is for administrative and informational purposes only. All beneficiaries of a grant must also be listed in the KYC/KYB process during the application phase. See our [FAQ](https://grants.web3.foundation/docs/faq#what-is-kyckyb-and-why-do-i-have-to-provide-this-data) for more info.
-
 ### Team members
 
-- Name of team leader
-- Names of team members
+- Jesse Chejieh
+- Damilare Akinlose
 
 ### Contact
 
-- **Contact Name:** Full name of the contact person in your team
-- **Contact Email:** Contact email (e.g. john@duo.com)
-- **Website:** Your website
+- **Contact Name:** Jesse Chejieh
+- **Contact Email:** jesse.chejieh@gmail.com
+- **Website:** [permissionless-hq](https://github.com/permissionless-hq)
 
 ### Legal Structure
 
@@ -459,6 +473,14 @@ Help us locate your project in the Polkadot/Substrate/Kusama landscape and what 
 - **Registered Legal Entity:** Name of your registered legal entity, if available. (e.g. Duo Ltd.)
 
 ### Team's experience
+
+Permissionless HQ is a collective of core blockchain engineers and builders from both protocol an application backgrounds, utilizing trustless, censorship-resistant architectures to redefine the blockchain application layer.
+
+Jesse Chejieh - [Polkadot Fellowship Memebr]
+
+Multichain consultation for 
+
+Damilare Akinlose - [Polkadot Fellowship Member]
 
 Please describe the team's relevant experience. If your project involves development work, we would appreciate it if you singled out a few interesting projects or contributions made by team members in the past.
 
@@ -503,8 +525,8 @@ Below we provide an **example roadmap**. In the descriptions, it should be clear
 
 - **Total Estimated Duration:** 4 Months
 - **Full-Time Equivalent (FTE):**  6 FTE
-- **Total Costs:** $85,000 USD
-- **DOT %:** Percentage of Total Costs to be paid in (vested) DOT (≥ 50%)
+- **Total Costs:** $95,000 USD
+- **DOT %:** 50%
 
 ### Milestone 1 Example — Order Maching and Escrow System
 
@@ -519,32 +541,31 @@ Below we provide an **example roadmap**. In the descriptions, it should be clear
 | -----: | ----------- | ------------- |
 | **0a.** | License | Apache 2.0 |
 | **0b.** | Documentation | We will provide both inline documentation of the code and a basic tutorial that explains how a user can spin up the annotation interface and perform basic tasks. |
-| **0c.** | Testing and Testing Guide | Core functions will be fully covered by comprehensive unit tests to ensure functionality and robustness. In the guide, we will describe how to run these tests. |
-| **0d.** | Docker | We will provide a Dockerfile(s) that can be used to test functionalities delivered with this milestone. |
-| 0e. | Article | We will publish an article that explains what was achieved as part of the grant. |
-| 0f. | OmniRamp Specification | We will put together a technical specification detailing the OmniRamp Protocol. |
-| 1a. | Order Matching Pallet | Implement public interface of order lifecycle management. |
-| 2a. | Multi-Sig Escrow Pallet | Implement public interface 2-of-3 escrow management pallet. |
-| 3a. | Reputation Baseline | Transaction tracking / success rates per account. |
-| 4. | RPC APIs | JSPN-RPC endpoints for order book interaction. |
+| **0c.** | Testing and Testing Guide | Comprehensive unit and integration tests covering core functionality with detailed guide on test execution. |
+| **0d.** | Docker | Containerized test environment with multi-node network simulation capabilities. |
+| 0e. | OmniRamp Specification | We will put together a technical specification detailing the OmniRamp Protocol. |
+| 1a. | Order Matching Pallet | Implement core order matching functionality and On-chain storage lookup optimizations. |
+| 1b. | Order Matching Pallet(Benchmarking) | Design benchmarks for extrinsic weights. |
+| 2a. | Multi-Sig Escrow Pallet | Implement 2-of-3 escrow management pallet. |
+| 2b. | Multi-sig Escrow Pallet(Benchmarking) | Design benchmarks for extrinsic weights. |
+| 3. | RPC APIs | JSPN-RPC endpoints for order book interaction. |
 
 
 ### Milestone 2 — DAO Abitration and Reputation System
 
 - **Estimated Duration:** 1 month
 - **FTE:**  1,5
-- **Costs:** $20,000 USD
+- **Costs:** $30,000 USD
 
 | Number | Deliverable | Specification |
 | -----: | ----------- | ------------- |
 | **0a.** | License | Apache 2.0 |
 | **0b.** | Documentation | We will provide both **inline documentation** of the code and a README stating objectives of DAO arbitration process and reputation system used by OmniRamp. |
-| **0c.** | Testing and Testing Guide | Core functions will be fully covered by comprehensive unit tests to ensure functionality and robustness. In the guide, we will describe how to run these tests. |
+| **0c.** | Testing and Testing Guide | Comprehensive unit and integration tests covering core functionality with detailed guide on test execution. |
 | **0d.** | Docker | We will provide a Dockerfile(s) that can be used to test functionalities delivered with this milestone. |
-| 1. | Governance Pallet | Implement Stake-weighted voting with 50% slashing for malicious rulings. |
-| 2. | Reputation Engine | Tiered penalties, sybli-resistant limits and recovery paths. |
-| 3. | Dispute Workflow | End-to-end testing of dispute creation -> resolution -> enforcement. |
-| 4. | Staking Interface | CLI tool for arbitrator registration/stake management. |
+| 1. | Governance Pallet & Arbitrator System | Implement abitrator initialization and stake-weighted voting with slashing for malicious rulings. |
+| 2. | Reputation Pallet | On-chain scoring system, tracking transaction success rates and dispute history. Tiered penalties, sybli-resistant limits and on-chain recovery paths. |
+| 3. | Dispute Workflow | Comprehensive testing of dispute lifecycle (initiation → evidence submission → DAO voting), using IPFS for evidence upload and updates. |
 
 
 ### Milestone 3 — Communication Protocol
@@ -560,8 +581,7 @@ Below we provide an **example roadmap**. In the descriptions, it should be clear
 | **0c.** | Testing and Testing Guide | Message encryption/decryption test suite. |
 | **0d.** | Docker | Networked nodes with encrypted chat capabilities. |
 | 1. | LibP2P Module | End-to-end encrypted chat protocol. |
-| 2. | Proof Attachments | File upload using IPFS. |
-| 3. | Reputation Integration | Auto-flag users abusing chat (spam/scams). |
+| 2. | Reputation Integration | Auto-flag users based on reputation scores. |
 
 
 ### Milestone 4 — XCMP (AssetHub)
@@ -576,35 +596,17 @@ Below we provide an **example roadmap**. In the descriptions, it should be clear
 | **0b.** | Documentation | XCM asset fulfilment guides. |
 | **0c.** | Testing and Testing Guide | Cross-chain test cases (OmniRamp ↔ Relay Chain ↔ AssetHub). |
 | **0d.** | Docker | Multi-chain test environment. |
+| 0e. | Article | Technical write-up published on Medium/Substack detailing protocol architecture. |
 | 1. | XCM Escrow Adapter | Lock/unlock assets across parachains via ReserveAssetDeposit. |
 | 2. | AssetHub Integration | Support USDT transfers on Polkadot AssetHub. |
 | 3. | Unified Address System | Single account interaction across connected chains. |
-| 4. | Multichain Research | Technical spec for Hyperbridge/Snowfork integration. |
-
-...
 
 
 ## Future Plans
 
-Please include here
-
-- how you intend to finance the project's long-term maintenance and development,
-- how you intend to use, enhance, and promote your project in the short term, and
-- the team's long-term plans and intentions in relation to it.
-
-## Referral Program (optional) :moneybag:
-
-You can find more information about the program [here](https://grants.web3.foundation/docs/referral-program).
-
-- **Referrer:** Name of the Polkadot Ambassador or GitHub account of the Web3 Foundation grantee
-- **Payment Address:** Polkadot/Kusama (USDC) payment address. Please also specify the currency. (e.g. 15oF4... (USDC))
+### Multichain Prolifiration
+**Objective**: Expand OmniRamp as a multichain P2P platform enabled by verifiable interopreability powered by Hyperbridge.
 
 ## Additional Information :heavy_plus_sign:
 
-**How did you hear about the Grants Program?** Web3 Foundation Website / Medium / Twitter / Element / Announcement by another team / personal recommendation / etc.
-
-Here you can also add any additional information that you think is relevant to this application but isn't part of it already, such as:
-
-- Work you have already done.
-- If there are any other teams who have already contributed (financially) to the project.
-- Previous grants you may have applied for.
+**How did you hear about the Grants Program?** Web3 Foundation Website.
