@@ -10,7 +10,7 @@
 
 ### Overview
 
-OmniRamp redefines fiat-to-crypto transition through a secure, decentralized peer-to-peer (P2P) trading protocol. Combining on-chain governance, cross-chain interoperability and privacy-first infrastructure to create a non-custodial marketplace that eliminates reliance on centralized exchanges (CEXs), empowering users trade fiat and crypto assets directly.
+OmniRamp redefines fiat-to-crypto transition through a secure, decentralized peer-to-peer (P2P) onramp/offramp trading protocol. Combining on-chain governance, cross-chain interoperability and privacy-first infrastructure to create a non-custodial marketplace that eliminates reliance on centralized exchanges (CEXs), empowering users trade fiat and crypto assets directly.
 
 Leveraging Polkadot, OmniRamp bolsters Web3 adoption, bridging traditional finance and decentralized ecosystems while prioritizing security, accessibility, and user sovereignty.
 
@@ -20,7 +20,7 @@ Leveraging Polkadot, OmniRamp bolsters Web3 adoption, bridging traditional finan
 
   - Non-Custodial Trading.
 
-  - Assets are secured via a multi-signature escrow pallet, removing third-party custody risks.
+  - Assets are secured via a multi-signature(signatures between buyer and seller) escrow pallet, removing third-party custody risks.
 
   - Initial support for DOT/USD transitions, with ongoing research for other pairs.
 
@@ -28,7 +28,7 @@ Leveraging Polkadot, OmniRamp bolsters Web3 adoption, bridging traditional finan
 
   - Polkadot Native: Leverages XCM for seamless asset transfers across parachains (e.g., DOT, ASTR, USDT(AssetHub)).
 
-  - Future Multi-chain Integration: Utilizes trustless bridges (Hyperbridge, Snowfork) to enable multi-chain p2p transitions.
+  - Future cross-chain Integration: Utilizing trustless bridging infrastructure (Hyperbridge, Snowfork) to enable cross-chain p2p transition across other Blockchain networks such as BNB, Ethereum e.t.c.
 
 *Privacy-First Compliance*
 
@@ -40,7 +40,7 @@ Leveraging Polkadot, OmniRamp bolsters Web3 adoption, bridging traditional finan
 
   - DAO Arbitration: Decentralized collective of staked arbitrators to resolve conflicts, with penalties for malicious rulings.
 
-  - Auto-Refund Mechanisms: Funds returned automatically if disputes remain unresolved for 1 Era(24H on Polkadot and 6H on Kusama).
+  - Auto-Refund Mechanisms: Funds returned automatically if disputes remain unresolved after some configured duration.
 
 **Team Motivation**
 
@@ -48,13 +48,13 @@ The team envisions OmniRamp as a clear delineation between permissionless system
 
 *Personal Pain Point*
 
-CEX hacks has underscored the urgent need for permissionless systems to become the default user onramp for crypto adoption. Centralized platforms, while convenient, remain vulnerable to security breaches, regulatory risks, and operational failures. This incident highlights the inherent risks of entrusting assets to intermediaries, reinforcing the necessity of decentralized alternatives that empower users with full control over their funds and access to financial services without reliance on centralized entities.
+CEX hacks has underscored the urgent need for permissionless systems to become the default user onramp/offramp for crypto adoption. Centralized platforms, while convenient, remain vulnerable to security breaches, regulatory risks, and operational failures. This incident highlights the inherent risks of entrusting assets to intermediaries, reinforcing the necessity of decentralized alternatives that empower users with full control over their funds and access to financial services without reliance on centralized entities.
 
 *Decentralized Systems Advocates and Implementors*
 
-Our team brings a decade of combined experience in:
+Our team brings years  of combined experience in:
 
-- Substrate Development: Core contributors to Polkadot parachains since 2021 and current Polkadot fellowship members.
+- Substrate Development: Core contributors to Polkadot Parachains since 2021 and current Polkadot fellowship members.
 
 - Interoperability: Background in building cross-chain protocols(i.e. [Hyperbridge](https://github.com/polytope-labs/hyperbridge/graphs/contributors)).
 
@@ -77,7 +77,7 @@ OmniRamp’s protocol enables seamless, decentralized fiat-crypto transitions th
 
 *Offer Creation*
 
-- Token Selection: Merchants list supported pairs(e.g., DOT/USD, DOT/EUR).
+- Token Selection: Buyers list supported pairs(e.g., DOT/USD, DOT/EUR)..
 
 - Pricing: Set exchange rates (e.g., 1 DOT = $7 USD) and choose fiat payment methods (bank transfer, PayPal e.t.c).
 
@@ -91,13 +91,13 @@ OmniRamp’s protocol enables seamless, decentralized fiat-crypto transitions th
 
 - Off-Chain Payment: Payer (User or merchant) sends fiat via recipient’s preferred method (e.g., wire transfer, bank transfer, PayPal).
 
-- Proof Submission: Buyer uploads encrypted payment proof (e.g., transaction ID) using LibP2P’s Noise Protocol.
+- Proof Submission: Buyer uploads encrypted payment proof (e.g., transaction ID) using the communication protocol.
 
 *Asset Release or Dispute*
 
-- Auto-Release: User / Merchant confirms payment within 1Era → escrow releases crypto to User / Merchant.
+- Auto-Release: User / Merchant confirms payment within configured duration → escrow releases crypto to User / Merchant.
 
-- Dispute Trigger: If unresolved, escrow locks funds and initiates DAO arbitration (7Era response window).
+- Dispute Trigger: If unresolved, escrow locks funds and buyer/seller initiates arbitration.
 
 
 #### Escrow Model: Secure, Time-Bound Custody
@@ -108,13 +108,13 @@ OmniRamp’s escrow system ensures fairness and eliminates counterparty risk:
 
 - Built on Substrate, escrow pallet initially support assets from Polkadot parachains (via XCM) with support for external chains (via bridges) in the near future.
 
-- Funds are held in 2-of-3 multi-sig accounts, requiring buyer/seller/arbitrator consensus for release.
+- Funds are held in 2-of-3 multi-sig accounts, requiring buyer and seller and/or arbitrator consensus for release.
 
 *Arbitration Mechanism*
 
 - DAO Governance: Staked $RAMP holders vote on disputes, with votes weighted by stake size.
 
-- Slashing: Arbitrators acting maliciously lose 50% of their stake.
+- Slashing: Arbitrators acting maliciously lose some of their stake.
 
 - Auto-Refund: If seller doesn’t confirm/reject payment within 1Era, a dispute case is issued.
 
@@ -130,7 +130,7 @@ OmniRamp’s escrow system ensures fairness and eliminates counterparty risk:
 
         - After 3 offenses: Temporary suspension and mandatory resolution training.
 
-    - **Appeal Process**: Allow sellers to contest penalties with evidence (e.g., technical issues, emergencies).
+    - **Appeal Process**: Allow sellers to contest penalties with evidence (e.g., technical issues).
 
     - **Recovery Path**: Regain lost reputation through successful transactions (e.g., +5% per 5 completed orders).
 
@@ -150,23 +150,23 @@ OmniRamp’s escrow system ensures fairness and eliminates counterparty risk:
 
     - Contextual Reputation Deductions:
 
-        - Minor failures (e.g., payment timeout): 5% reputation decrease.
+        - Minor failures (e.g., payment timeout): reputation decrease.
 
-        - Repeat failures (3+ in 7 days): 15% decrease + initiate abitrator review for intent.
+        - Repeat failures: 15% decrease + initiate abitrator review for intent.
 
-        - Proven fraud: Account deletion.
+        - Proven fraud: Account blacklisted.
 
     - Fraud Triggers:
 
-        - Auto-flag users with high cancellation rates (>30%) or disputed orders.
+        - Auto-flag users with high cancellation rates or disputed orders.
 
-        - Investigate patterns (e.g., users who only initiate only high-value trades).
+        - Investigate patterns (e.g., users who initiate only high-value trades).
 
 4. Positive Reinforcement
 
     - Reward good actors with:
 
-        - Reputation boosts for consistent on-time completions (e.g., +3% per 5 flawless trades).
+        - Reputation boosts for consistent on-time completions.
 
         - Badges or perks (e.g., "Trusted Seller" status, reduced platform fees).
 
@@ -444,7 +444,7 @@ Solution: P2P model reduces regional barriers (World Bank Findex Report 2021).
 ##### Competitive Landscape
 Polkadot Ecosystem: No direct competitors; existing bridges lack fiat pairs.
 
-External Ecosystems: Bisq (Bitcoin-only), LocalCryptos (Ethereum-centric, custodial escrow).
+External Ecosystems: Bisq (Bitcoin-only) e.t.c.
 
 ## Team :busts_in_silhouette:
 
@@ -461,17 +461,11 @@ External Ecosystems: Bisq (Bitcoin-only), LocalCryptos (Ethereum-centric, custod
 
 ### Team's experience
 
-Permissionless HQ is a collective of core blockchain engineers and builders from both protocol an application backgrounds, utilizing trustless, censorship-resistant architectures to redefine the blockchain application layer.
+Permissionless HQ is a collective of core blockchain engineers and builders from both protocol and application backgrounds, utilizing trustless, censorship-resistant architectures to redefine the blockchain application layer.
 
-Jesse Chejieh - [Polkadot Fellowship Memebr](https://github.com/polkadot-fellows/seeding/pull/25) **add more**
+Jesse Chejieh - [Polkadot Fellowship Memebr](https://github.com/polkadot-fellows/seeding/pull/25), Polkadot integration consultation for Paima Studios.
 
 Damilare Akinlose - [Polkadot Fellowship Member](https://github.com/polkadot-fellows/seeding/pull/41) **add more**
-
-### Previous Grant Application
-
-[Solidity Trie Verifier Implementation](https://github.com/w3f/Grants-Program/pull/1486) by Polytope Labs
-
-[Interoperable State Machine Protocol](https://github.com/w3f/Grants-Program/pull/1645) by Polytope Labs
 
 ### Team GitHub Profiles
 
@@ -480,12 +474,11 @@ Damilare Akinlose - [Polkadot Fellowship Member](https://github.com/polkadot-fel
 
 Please also provide the GitHub accounts of all team members. If they contain no activity, references to projects hosted elsewhere or live are also fine.
 
-- https://github.com/{team_member_1}
-- https://github.com/{team_member_2}
+- [Jesse Chejieh](https://github.com/Doordashcon)
+- [Damilare Akinlose](https://github.com/dharjeezy)
 
 ### Team LinkedIn Profiles (if available)
 
-- https://www.linkedin.com/{person_1}
 - https://www.linkedin.com/{person_2}
 
 ## Development Roadmap :nut_and_bolt:
@@ -497,7 +490,7 @@ Please also provide the GitHub accounts of all team members. If they contain no 
 - **Total Costs:** $95,000 USD
 - **DOT %:** 50% (Percentage of Total Costs to be paid in vested DOT)
 
-### Milestone 1 Example — Order Maching and Escrow System
+### Milestone 1 Example — Order Macthing and Escrow System
 
 - **Estimated duration:** 1 month
 - **FTE:**  1,5
