@@ -1,18 +1,10 @@
 # OmniRamp
 
-> [!NOTE]
-> This document will be part of the terms and conditions of your agreement and, therefore, needs to contain all the required information about the project. Don't remove any of the mandatory parts presented in bold letters or as headlines (except for the title)! Lines starting with a `>` (such as this one) should be removed. Please use markdown instead of HTML (e.g., `![](image.png)` instead of `<img>`).
->
-> See the [Grants Program Process](https://grants.web3.foundation/docs/process) on how to submit a proposal.
-
-- **Team Name:** Legal name of your team (e.g. JsonCorp)
+- **Team Name:** Permissionless HQ
 - **Payment Details:**
   - **DOT**: For the **DOT** compensation, please provide a Polkadot address (e.g. 15oF4...).
   - **Payment**: In case of payment in **USDC**, please provide a Polkadot AssetHub address and the currency (e.g. 15oF4... (USDC)). In the case of **fiat** payment, please share your bank account privately with grants@web3.foundation via your contact email (see below) and list here the date and time of your email (e.g. Fiat 24.12.1971, 11:59). 
-- **[Level](https://grants.web3.foundation/docs/Introduction/levels):** 1, 2 or 3
-
-> [!IMPORTANT]
-> *The combination of your GitHub account submitting the application and the payment address above will be your unique identifier during the program. Please keep them safe.*
+- **[Level](https://grants.web3.foundation/docs/Introduction/levels):** 3
 
 ## Project Overview :page_facing_up:
 
@@ -476,17 +468,17 @@ External Ecosystems: Bisq (Bitcoin-only), LocalCryptos (Ethereum-centric, custod
 
 Permissionless HQ is a collective of core blockchain engineers and builders from both protocol an application backgrounds, utilizing trustless, censorship-resistant architectures to redefine the blockchain application layer.
 
-Jesse Chejieh - [Polkadot Fellowship Memebr](https://github.com/polkadot-fellows/seeding/pull/25)
+Jesse Chejieh - [Polkadot Fellowship Memebr](https://github.com/polkadot-fellows/seeding/pull/25) **add more**
 
-Multichain consultation for 
+Damilare Akinlose - [Polkadot Fellowship Member](https://github.com/polkadot-fellows/seeding/pull/41) **add more**
 
-Damilare Akinlose - [Polkadot Fellowship Member](https://github.com/polkadot-fellows/seeding/pull/41)
+### Previous Grant Application
 
-Please describe the team's relevant experience. If your project involves development work, we would appreciate it if you singled out a few interesting projects or contributions made by team members in the past.
+[Solidity Trie Verifier Implementation](https://github.com/w3f/Grants-Program/pull/1486) by Polytope Labs
 
-If anyone on your team has applied for a grant at the Web3 Foundation previously, please list the name of the project and legal entity here.
+[Interoperable State Machine Protocol](https://github.com/w3f/Grants-Program/pull/1645) by Polytope Labs
 
-### Team Code Repos
+### Team GitHub Profiles
 
 - https://github.com/{your_organisation}/{project_1}
 - https://github.com/{your_organisation}/{project_2}
