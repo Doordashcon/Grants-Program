@@ -64,9 +64,9 @@ Our team brings a decade of combined experience in:
 
 - Substrate Development: Core contributors to Polkadot parachains since 2021 and current Polkadot fellowship members.
 
-- Interoperability: Background in building cross-chain protocols(i.e. Hyperbridge).
+- Interoperability: Background in building cross-chain protocols(i.e. [Hyperbridge](https://github.com/polytope-labs/hyperbridge/graphs/contributors)).
 
-- Governance: Architected DAOs(i.e. Secretary Program for the polkadot fellowship).
+- Governance: Architected DAOs(i.e. [Secretary Program](https://github.com/polkadot-fellows/runtimes/pull/347) for the polkadot fellowship).
 
 
 *What Excites us Technically*
@@ -433,9 +433,9 @@ Storage
 Where does OmniRamp fit?
 OmniRamp fills Polkadot’s critical gap in decentralized fiat access, serving as the missing bridge between traditional finance and multi-chain DeFi. Unlike CEX-centric solutions, it leverages:
 
-Polkadot’s shared security for escrow trustlessness.
+Polkadot’s shared security.
 
-XCM for cross-chain dispursment wrapped assets.
+XCM for cross-chain dispursment of assets.
 
 ##### Target Audience
 End Users: Crypto newcomers needing low-friction fiat onboarding.
@@ -476,11 +476,11 @@ External Ecosystems: Bisq (Bitcoin-only), LocalCryptos (Ethereum-centric, custod
 
 Permissionless HQ is a collective of core blockchain engineers and builders from both protocol an application backgrounds, utilizing trustless, censorship-resistant architectures to redefine the blockchain application layer.
 
-Jesse Chejieh - [Polkadot Fellowship Memebr]
+Jesse Chejieh - [Polkadot Fellowship Memebr](https://github.com/polkadot-fellows/seeding/pull/25)
 
 Multichain consultation for 
 
-Damilare Akinlose - [Polkadot Fellowship Member]
+Damilare Akinlose - [Polkadot Fellowship Member](https://github.com/polkadot-fellows/seeding/pull/41)
 
 Please describe the team's relevant experience. If your project involves development work, we would appreciate it if you singled out a few interesting projects or contributions made by team members in the past.
 
