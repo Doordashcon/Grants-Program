@@ -26,7 +26,7 @@ Leveraging Polkadot, OmniRamp bolsters Web3 adoption, bridging traditional finan
 
 *Cross-Chain Liquidity Engine*
 
-  - Polkadot Native: Leverages XCM for seamless asset transfers across parachains (e.g., DOT, ASTR, USDT(AssetHub)).
+  - Polkadot Native: Leverages XCM for seamless asset transfers across parachains (e.g., initially DOT and USDT on AssetHub).
 
   - Future cross-chain Integration: Utilizing trustless bridging infrastructure (Hyperbridge, Snowfork) to enable cross-chain p2p transition across other Blockchain networks such as BNB, Ethereum e.t.c.
 
@@ -230,6 +230,10 @@ pub fn update_order() -> DispatchResult;
 #[pallet::call_index(3)]
 pub fn cancel_order() -> DispatchResult;
 
+#[pallet::weight(T::WeightInfo::cancel_order())]
+#[pallet::call_index(4)]
+pub fn dispute_order() -> DispatchResult;
+
 ```
 
 #### Data Structure
@@ -267,26 +271,13 @@ OrderCancelled(AccountId, OrderId);
 ```rust
 /// Initiate Merchant into Escrow Pallet
 /// The source chain of funds should add this escrow pallet as a proxy.
-#[pallet::weight(T::WeightInfo::init())]
-#[pallet::call_index(0)]
 pub fn init() -> DispatchResult;
 
-
 /// Lock funds for matched order
-#[pallet::weight(T::WeightInfo::lock_funds())]
-#[pallet::call_index(1)]
 fn lock_funds() -> DispatchResult;
 
 /// Release funds to counterparty
-#[pallet::weight(T::WeightInfo::release_funds())]
-#[pallet::call_index(2)]
 fn release_funds() -> DispatchResult;
-
-/// Initiate dispute resolution
-#[pallet::weight(T::WeightInfo::initiate_dispute())]
-#[pallet::call_index(3)]
-fn initiate_dispute() -> DispatchResult;
-
 ```
 
 
@@ -555,9 +546,9 @@ Please also provide the GitHub accounts of all team members. If they contain no 
 | **0b.** | Documentation | XCM asset fulfilment guides. |
 | **0c.** | Testing and Testing Guide | Cross-chain test cases (OmniRamp ↔ Relay Chain ↔ AssetHub). |
 | **0d.** | Docker | Multi-chain test environment. |
-| 0e. | Article | Technical write-up published on Medium/Substack detailing protocol architecture. |
+| 0e. | Article | Technical write-up published on Medium detailing protocol architecture. |
 | 1. | XCM Escrow Adapter | Lock/unlock assets across parachains via ReserveAssetDeposit. |
-| 2. | AssetHub Integration | Support USDT transfers on Polkadot AssetHub. |
+| 2. | AssetHub Integration | Support USDT & DOT order fulfilment on Polkadot AssetHub. |
 | 3. | Unified Address System | Single account interaction across connected chains. |
 
 
